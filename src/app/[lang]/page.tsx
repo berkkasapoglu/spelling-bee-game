@@ -1,3 +1,4 @@
+import HiveCell from './components/hive-cell/HiveCell';
 import { Locales, getDictionary } from './dictionaries';
 
 interface IProps {
@@ -9,5 +10,10 @@ interface IProps {
 export default async function Home({ params: { lang } }: IProps) {
   const dict = await getDictionary(lang);
 
-  return <h1>Spelling Bee Game</h1>;
+  return (
+    <div>
+      <HiveCell letter="T" variant="middle" />
+      <HiveCell letter="T" />
+    </div>
+  );
 }

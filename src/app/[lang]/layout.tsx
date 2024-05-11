@@ -16,7 +16,6 @@ interface IProps {
 }
 
 export default function RootLayout({ children, params }: IProps) {
-  console.log('params.lang', params.lang);
   return (
     <html lang={params.lang}>
       <body className={inter.className}>{children}</body>
