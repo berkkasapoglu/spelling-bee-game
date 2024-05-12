@@ -33,3 +33,11 @@ input {
   --secondary-color-dark: #d1dceb;
   --max-content-width: 400px;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  max-width: var(--max-content-width);
+}

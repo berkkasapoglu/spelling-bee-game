@@ -1,0 +1,67 @@
+.container {
+  --stop-width: 10px;
+  --current-stop-width: 30px;
+  --gap-between-stops: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding-block: 10px;
+  cursor: pointer;
+
+  .info {
+    .nextStep {
+      font-size: 12px;
+    }
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-between-stops);
+    height: 20px;
+    .stop {
+      width: var(--stop-width);
+      height: var(--stop-width);
+      position: relative;
+      border-radius: 50%;
+      background-color: var(--secondary-color);
+
+      &:not(:last-child)::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: calc(var(--stop-width) + var(--gap-between-stops));
+        height: 2px;
+        background-color: var(--secondary-color);
+        left: calc(var(--stop-width) / 2);
+        top: calc(var(--stop-width) / 2);
+        z-index: -1;
+        transform: translateY(-50%);
+      }
+
+      &.done {
+        background-color: var(--primary-color);
+      }
+
+      &.done::after {
+        background-color: var(--primary-color);
+      }
+
+      &.current {
+        width: var(--current-stop-width);
+        height: var(--current-stop-width);
+        background-color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      &.current::after {
+        top: calc(var(--current-stop-width) / 2);
+        width: calc(var(--current-stop-width) + var(--gap-between-stops));
+      }
+    }
+  }
+}
