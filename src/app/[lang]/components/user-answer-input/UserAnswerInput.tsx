@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import classes from './UserAnswerInput.module.scss';
-import { VALIDATION_REGEX, VALID_TURKISH_CHARS } from './UserAnswer.constants';
+import classNames from 'classnames';
 
 interface IProps {
   value: string;
@@ -10,23 +10,10 @@ interface IProps {
   middleChar: string;
 }
 
-function UserAnswerInput() {
-  const [value, setValue] = useState('');
-
+function UserAnswerInput({ value, onChange, middleChar }: IProps) {
   useEffect(() => {
     const handleKeydown = ({ key }: KeyboardEvent) => {
-      if (key === 'Backspace')
-        return setValue((prev) => prev.slice(0, prev.length - 1));
-
-      const regex = new RegExp(VALIDATION_REGEX);
-      if (!regex.test(key)) return;
-
-      const isValid =
-        (key >= 'a' && key <= 'z') || VALID_TURKISH_CHARS.includes(key);
-
-      if (!isValid) return;
-
-      setValue((prev) => prev + key);
+      onChange?.(key);
     };
 
     document.addEventListener('keydown', handleKeydown);
@@ -38,13 +25,15 @@ function UserAnswerInput() {
 
   return (
     <>
-      <div
-        className={classes.input}
-        onInput={(e) => {
-          console.log('e.target', e.target);
-        }}
-      >
-        {value}
+      <div className={classes.input}>
+        {value.split('').map((letter, idx) => (
+          <span
+            key={idx}
+            className={classNames({ [classes.middle]: middleChar == letter })}
+          >
+            {letter}
+          </span>
+        ))}
       </div>
     </>
   );

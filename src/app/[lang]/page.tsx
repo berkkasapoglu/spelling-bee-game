@@ -1,11 +1,18 @@
+'use client';
+
 import HiveCellContainer from './components/hive-cell-container/HiveCellContainer';
 import HiveCell from './components/hive-cell/HiveCell';
 import hiveClasses from './components/hive-cell-container/HiveCellContainer.module.scss';
 import classes from './page.module.css';
-import { Locales, getDictionary } from './dictionaries';
+import { Locales } from './dictionaries';
 import ProgressBar from './components/progress-bar/ProgressBar';
 import AnswerList from './components/answer-list/AnswerList';
 import UserAnswerInput from './components/user-answer-input/UserAnswerInput';
+import { useEffect, useState } from 'react';
+import {
+  VALIDATION_REGEX,
+  VALID_TURKISH_CHARS,
+} from './components/user-answer-input/UserAnswer.constants';
 
 interface IProps {
   params: {
@@ -13,27 +20,50 @@ interface IProps {
   };
 }
 
-export default async function Home({ params: { lang } }: IProps) {
-  const dict = await getDictionary(lang);
+export default function Home({ params: { lang } }: IProps) {
+  const [userInput, setUserInput] = useState('');
+
+  const handleCellClick = (letter: string) => {
+    setUserInput((prev) => prev + letter);
+  };
+
+  const onChangeUserInput = (key: string) => {
+    if (key === 'Backspace')
+      return setUserInput((prev) => prev.slice(0, prev.length - 1));
+
+    const regex = new RegExp(VALIDATION_REGEX);
+    if (!regex.test(key)) return;
+
+    const isValid =
+      (key >= 'a' && key <= 'z') || VALID_TURKISH_CHARS.includes(key);
+
+    if (!isValid) return;
+
+    setUserInput((prev) => prev + key);
+  };
 
   return (
     <>
       <ProgressBar />
       <AnswerList />
-      <UserAnswerInput />
+      <UserAnswerInput
+        value={userInput}
+        onChange={onChangeUserInput}
+        middleChar="D"
+      />
       <div className={classes.container}>
         <HiveCellContainer>
-          <HiveCell letter="T" />
-          <HiveCell letter="T" />
+          <HiveCell letter="T" onClick={handleCellClick} />
+          <HiveCell letter="Y" onClick={handleCellClick} />
         </HiveCellContainer>
         <HiveCellContainer className={hiveClasses.middle}>
-          <HiveCell letter="T" />
-          <HiveCell letter="T" variant="middle" />
-          <HiveCell letter="T" />
+          <HiveCell letter="A" onClick={handleCellClick} />
+          <HiveCell letter="D" variant="middle" onClick={handleCellClick} />
+          <HiveCell letter="R" onClick={handleCellClick} />
         </HiveCellContainer>
         <HiveCellContainer className={hiveClasses.last}>
-          <HiveCell letter="T" />
-          <HiveCell letter="T" />
+          <HiveCell letter="B" onClick={handleCellClick} />
+          <HiveCell letter="T" onClick={handleCellClick} />
         </HiveCellContainer>
       </div>
     </>

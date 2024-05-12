@@ -27,6 +27,7 @@ a {
 button {
   border: none;
   background: transparent;
+  outline: 0;
 }
 
 button,
