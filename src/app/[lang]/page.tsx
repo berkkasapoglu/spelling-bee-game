@@ -4,6 +4,7 @@ import hiveClasses from './components/hive-cell-container/HiveCellContainer.modu
 import classes from './page.module.css';
 import { Locales, getDictionary } from './dictionaries';
 import ProgressBar from './components/progress-bar/ProgressBar';
+import AnswerList from './components/answer-list/AnswerList';
 
 interface IProps {
   params: {
@@ -17,6 +18,7 @@ export default async function Home({ params: { lang } }: IProps) {
   return (
     <>
       <ProgressBar />
+      <AnswerList />
       <div className={classes.container}>
         <HiveCellContainer>
           <HiveCell letter="T" />
