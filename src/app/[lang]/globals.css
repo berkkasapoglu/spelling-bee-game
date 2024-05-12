@@ -25,3 +25,11 @@ button,
 input {
   font-family: inherit;
 }
+
+:root {
+  --primary-color: #ffd924;
+  --primary-color-dark: #ecc129;
+  --secondary-color: #e4eaf3;
+  --secondary-color-dark: #d1dceb;
+  --max-content-width: 400px;
+}

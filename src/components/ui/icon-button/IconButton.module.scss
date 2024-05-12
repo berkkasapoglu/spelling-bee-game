@@ -1,0 +1,14 @@
+.button {
+  display: flex;
+  align-items: center;
+  padding: 7px 5px;
+  transition: all 300ms;
+  cursor: pointer;
+  transition: all 400ms;
+  background-color: transparent;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

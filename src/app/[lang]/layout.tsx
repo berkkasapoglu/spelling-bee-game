@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Nunito, Poppins } from 'next/font/google';
 import './globals.css';
 import { Locales } from './dictionaries';
+import Header from '@/components/layout/Header';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -20,7 +21,10 @@ interface IProps {
 export default function RootLayout({ children, params }: IProps) {
   return (
     <html lang={params.lang}>
-      <body className={nunito.className}>{children}</body>
+      <body className={nunito.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
