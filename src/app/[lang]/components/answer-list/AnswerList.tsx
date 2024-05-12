@@ -25,8 +25,10 @@ function AnswerList() {
 
     return (
       <div className={classNames([classes.words, { [classes.open]: isOpen }])}>
-        {clonedList.sort().map((word) => (
-          <p className={classes.item}>{word}</p>
+        {clonedList.sort().map((word, idx) => (
+          <p key={idx} className={classes.item}>
+            {word}
+          </p>
         ))}
       </div>
     );

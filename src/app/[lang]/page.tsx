@@ -5,6 +5,7 @@ import classes from './page.module.css';
 import { Locales, getDictionary } from './dictionaries';
 import ProgressBar from './components/progress-bar/ProgressBar';
 import AnswerList from './components/answer-list/AnswerList';
+import UserAnswerInput from './components/user-answer-input/UserAnswerInput';
 
 interface IProps {
   params: {
@@ -19,6 +20,7 @@ export default async function Home({ params: { lang } }: IProps) {
     <>
       <ProgressBar />
       <AnswerList />
+      <UserAnswerInput />
       <div className={classes.container}>
         <HiveCellContainer>
           <HiveCell letter="T" />
