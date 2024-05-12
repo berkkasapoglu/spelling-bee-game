@@ -1,0 +1,17 @@
+.container {
+  --cell-space: 2.5px;
+  --cell-width: 70px;
+
+  display: flex;
+  justify-content: space-around;
+  width: calc(2 * var(--cell-width) + var(--cell-space) * 4);
+
+  &.middle {
+    width: calc(3 * var(--cell-width) + var(--cell-space) * 6);
+    transform: translateY(-17px);
+  }
+
+  &.last {
+    transform: translateY(-34px);
+  }
+}

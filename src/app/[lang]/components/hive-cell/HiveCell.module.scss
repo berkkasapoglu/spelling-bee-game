@@ -1,24 +1,40 @@
 .hex {
-  --hex-width: 80px;
+  --middle-cell-color: #fce303;
+  --middle-cell-color-active: #be9c04;
+  --outer-cell-color: #e6e6e6;
+  --outer-cell-color-active: #d9d9d9;
 
-  width: var(--hex-width);
-  height: calc(var(--hex-width) * 2 / 2.3);
-  clip-path: polygon(25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  width: var(--cell-width);
+  height: calc(var(--cell-width) * 2 / 1.6);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 300ms;
+
   cursor: pointer;
 
   &.middle {
-    background-color: #fce303;
+    background-color: var(--middle-cell-color);
+    &:active {
+      background-color: var(--middle-cell-color-active);
+    }
   }
 
   &.outer {
-    background-color: #e6e6e6;
+    background-color: var(--outer-cell-color);
+
+    &:active {
+      background-color: var(--outer-cell-color-active);
+    }
   }
 
   .letter {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+
+  &:active {
+    transform: scale(0.8);
   }
 }

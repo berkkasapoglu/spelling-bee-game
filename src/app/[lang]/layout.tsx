@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Nunito, Poppins } from 'next/font/google';
 import './globals.css';
 import { Locales } from './dictionaries';
 
-const inter = Inter({ subsets: ['latin'] });
+const nunito = Nunito({
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Spelling Bee',
@@ -18,7 +20,7 @@ interface IProps {
 export default function RootLayout({ children, params }: IProps) {
   return (
     <html lang={params.lang}>
-      <body className={inter.className}>{children}</body>
+      <body className={nunito.className}>{children}</body>
     </html>
   );
 }
