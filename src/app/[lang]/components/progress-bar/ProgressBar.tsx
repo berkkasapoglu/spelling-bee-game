@@ -1,7 +1,11 @@
 import classNames from 'classnames';
 import classes from './ProgressBar.module.scss';
 
-function ProgressBar() {
+interface IProps {
+  score: number;
+}
+
+function ProgressBar({ score }: IProps) {
   return (
     <div className={classes.container}>
       <div className={classes.info}>
@@ -14,7 +18,9 @@ function ProgressBar() {
       <div className={classes.progress}>
         <div className={classNames([classes.stop, classes.done])}></div>
         <div className={classNames([classes.stop, classes.done])}></div>
-        <div className={classNames([classes.stop, classes.current])}>32</div>
+        <div className={classNames([classes.stop, classes.current])}>
+          {score}
+        </div>
         <div className={classes.stop}></div>
         <div className={classes.stop}></div>
         <div className={classes.stop}></div>

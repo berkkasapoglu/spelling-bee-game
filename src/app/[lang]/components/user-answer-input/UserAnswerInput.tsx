@@ -7,10 +7,10 @@ import classNames from 'classnames';
 interface IProps {
   value: string;
   onChange?: (value: string) => void;
-  middleChar: string;
+  middleLetter: string;
 }
 
-function UserAnswerInput({ value, onChange, middleChar }: IProps) {
+function UserAnswerInput({ value, onChange, middleLetter }: IProps) {
   useEffect(() => {
     const handleKeydown = ({ key }: KeyboardEvent) => {
       onChange?.(key);
@@ -21,7 +21,7 @@ function UserAnswerInput({ value, onChange, middleChar }: IProps) {
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, []);
+  }, [onChange]);
 
   return (
     <>
@@ -29,7 +29,7 @@ function UserAnswerInput({ value, onChange, middleChar }: IProps) {
         {value.split('').map((letter, idx) => (
           <span
             key={idx}
-            className={classNames({ [classes.middle]: middleChar == letter })}
+            className={classNames({ [classes.middle]: middleLetter == letter })}
           >
             {letter}
           </span>

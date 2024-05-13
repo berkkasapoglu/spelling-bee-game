@@ -13,21 +13,42 @@ import UserAnswerInput from '../user-answer-input/UserAnswerInput';
 import hiveClasses from '../hive-cell-container/HiveCellContainer.module.scss';
 import classes from '../../page.module.css';
 import { IGame } from './SpellingGame.types';
+import { uniqueId } from 'lodash';
 
 interface IProps {
-  games: IGame[];
+  game: IGame;
 }
 
-function SpellingGame({ games }: IProps) {
+function SpellingGame({ game }: IProps) {
+  const [score, setScore] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [userInput, setUserInput] = useState('');
 
   const handleCellClick = (letter: string) => {
     setUserInput((prev) => prev + letter);
   };
 
+  const onEnter = () => {
+    if (correctAnswers.includes(userInput)) return;
+
+    if (game.pangrams.includes(userInput)) {
+      setCorrectAnswers([...correctAnswers, userInput]);
+      return setScore((prev) => prev + 16);
+    }
+
+    if (game.answers.includes(userInput)) {
+      setCorrectAnswers([...correctAnswers, userInput]);
+      return setScore((prev) => prev + 10);
+    }
+
+    setUserInput('');
+  };
+
   const onChangeUserInput = (key: string) => {
     if (key === 'Backspace')
       return setUserInput((prev) => prev.slice(0, prev.length - 1));
+
+    if (key === 'Enter') return onEnter();
 
     const regex = new RegExp(VALIDATION_REGEX);
     if (!regex.test(key)) return;
@@ -40,28 +61,35 @@ function SpellingGame({ games }: IProps) {
     setUserInput((prev) => prev + key);
   };
 
+  const renderCellRow = (start: number, end: number) => {
+    return game.validLetters
+      .slice(start, end)
+      .map((letter, idx) => (
+        <HiveCell
+          key={uniqueId()}
+          letter={letter}
+          variant={start + idx === 3 ? 'middle' : 'outer'}
+          onClick={handleCellClick}
+        />
+      ));
+  };
+
   return (
     <>
-      <ProgressBar />
+      <ProgressBar score={score} />
       <AnswerList />
       <UserAnswerInput
         value={userInput}
         onChange={onChangeUserInput}
-        middleChar="D"
+        middleLetter={game.middleLetter}
       />
       <div className={classes.container}>
-        <HiveCellContainer>
-          <HiveCell letter="T" onClick={handleCellClick} />
-          <HiveCell letter="Y" onClick={handleCellClick} />
-        </HiveCellContainer>
+        <HiveCellContainer>{renderCellRow(0, 2)}</HiveCellContainer>
         <HiveCellContainer className={hiveClasses.middle}>
-          <HiveCell letter="A" onClick={handleCellClick} />
-          <HiveCell letter="D" variant="middle" onClick={handleCellClick} />
-          <HiveCell letter="R" onClick={handleCellClick} />
+          {renderCellRow(2, 5)}
         </HiveCellContainer>
         <HiveCellContainer className={hiveClasses.last}>
-          <HiveCell letter="B" onClick={handleCellClick} />
-          <HiveCell letter="T" onClick={handleCellClick} />
+          {renderCellRow(5, 7)}
         </HiveCellContainer>
       </div>
     </>
