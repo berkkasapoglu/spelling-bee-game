@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
-import { Locales } from './dictionaries';
+import { Locales } from '../../lib/dictionaries';
 import Header from '@/components/layout/Header';
 
 const nunito = Nunito({

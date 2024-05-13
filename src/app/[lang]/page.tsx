@@ -1,6 +1,6 @@
-import { Locales } from './dictionaries';
+import { Locales } from '../../lib/dictionaries';
 import SpellingGame from './components/spelling-game/SpellingGame';
-import getFile from '../helpers/get-file';
+import getFile from '../../helpers/get-file';
 
 interface IProps {
   params: {
