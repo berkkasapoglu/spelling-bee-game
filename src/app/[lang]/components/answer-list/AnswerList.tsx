@@ -7,13 +7,15 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { cloneDeep } from 'lodash';
 
-const MOCK_WORD_LIST: string[] = ['cccc', 'a', 't', 'b'];
+interface IProps {
+  list: string[];
+}
 
-function AnswerList() {
+function AnswerList({ list }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    if (!MOCK_WORD_LIST.length) return;
+    if (!list.length) return;
 
     setIsOpen((prev) => !prev);
   };
@@ -21,7 +23,7 @@ function AnswerList() {
   const renderAnswerList = () => {
     if (!isOpen) return;
 
-    const clonedList = cloneDeep(MOCK_WORD_LIST);
+    const clonedList = cloneDeep(list);
 
     return (
       <div className={classNames([classes.words, { [classes.open]: isOpen }])}>
@@ -35,9 +37,17 @@ function AnswerList() {
   };
 
   const renderDropdownInfo = () => {
-    if (!MOCK_WORD_LIST.length) return <p>Your Words...</p>;
+    if (!list.length) return <p>Your Words...</p>;
 
-    return <div className={classes.highlight}>{MOCK_WORD_LIST.join(', ')}</div>;
+    if (isOpen)
+      return (
+        <p>
+          You have found <strong>{list.length}</strong>{' '}
+          {list.length > 1 ? 'words' : 'word'}
+        </p>
+      );
+
+    return <div className={classes.highlight}>{list.join(', ')}</div>;
   };
 
   return (

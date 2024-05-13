@@ -14,6 +14,8 @@ import hiveClasses from '../hive-cell-container/HiveCellContainer.module.scss';
 import classes from '../../page.module.css';
 import { IGame } from './SpellingGame.types';
 import { uniqueId } from 'lodash';
+import { MIDDLE_LETTER_INDEX } from './SpellingGame.constants';
+import calculateScore from '../../helpers/calculate-score';
 
 interface IProps {
   game: IGame;
@@ -29,19 +31,17 @@ function SpellingGame({ game }: IProps) {
   };
 
   const onEnter = () => {
+    setUserInput('');
+
     if (correctAnswers.includes(userInput)) return;
 
-    if (game.pangrams.includes(userInput)) {
-      setCorrectAnswers([...correctAnswers, userInput]);
-      return setScore((prev) => prev + 16);
-    }
+    if (!game.pangrams.includes(userInput) && !game.answers.includes(userInput))
+      return;
 
-    if (game.answers.includes(userInput)) {
-      setCorrectAnswers([...correctAnswers, userInput]);
-      return setScore((prev) => prev + 10);
-    }
+    setCorrectAnswers([...correctAnswers, userInput]);
 
-    setUserInput('');
+    const gainedScore = calculateScore(game, userInput);
+    setScore(score + gainedScore);
   };
 
   const onChangeUserInput = (key: string) => {
@@ -68,7 +68,7 @@ function SpellingGame({ game }: IProps) {
         <HiveCell
           key={uniqueId()}
           letter={letter}
-          variant={start + idx === 3 ? 'middle' : 'outer'}
+          variant={start + idx === MIDDLE_LETTER_INDEX ? 'middle' : 'outer'}
           onClick={handleCellClick}
         />
       ));
@@ -77,7 +77,7 @@ function SpellingGame({ game }: IProps) {
   return (
     <>
       <ProgressBar score={score} />
-      <AnswerList />
+      <AnswerList list={correctAnswers} />
       <UserAnswerInput
         value={userInput}
         onChange={onChangeUserInput}
