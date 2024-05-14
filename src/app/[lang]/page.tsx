@@ -14,7 +14,7 @@ export default async function Home({ params: { lang } }: IProps) {
   const file = await getFile();
 
   const getRandomGame = (games: IGame[]) => {
-    // const index = Math.floor(Math.random() * games.length);
+    //FIXME: const index = Math.floor(Math.random() * games.length);
     const index = 0;
     const game = games[index];
 
@@ -26,5 +26,5 @@ export default async function Home({ params: { lang } }: IProps) {
     return games[index];
   };
 
-  return <SpellingGame game={getRandomGame(JSON.parse(file))} />;
+  return <SpellingGame gameData={getRandomGame(JSON.parse(file))} />;
 }
