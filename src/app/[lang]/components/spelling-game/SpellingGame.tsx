@@ -16,6 +16,7 @@ import { IGame } from './SpellingGame.types';
 import { uniqueId } from 'lodash';
 import { MIDDLE_LETTER_INDEX } from './SpellingGame.constants';
 import calculateScore from '../../helpers/calculate-score';
+import InfoModal from '../info-modal/InfoModal';
 
 interface IProps {
   game: IGame;
@@ -76,6 +77,7 @@ function SpellingGame({ game }: IProps) {
 
   return (
     <>
+      <InfoModal />
       <ProgressBar score={score} />
       <AnswerList list={correctAnswers} />
       <UserAnswerInput
