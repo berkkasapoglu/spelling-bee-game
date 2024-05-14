@@ -11,11 +11,10 @@ interface IProps {
 }
 
 export default async function Home({ params: { lang } }: IProps) {
-  const file = await getFile();
+  const file = await getFile(lang);
 
   const getRandomGame = (games: IGame[]) => {
-    //FIXME: const index = Math.floor(Math.random() * games.length);
-    const index = 0;
+    const index = Math.floor(Math.random() * games.length);
     const game = games[index];
 
     const middleLetterIndex = game.validLetters.indexOf(game.middleLetter);

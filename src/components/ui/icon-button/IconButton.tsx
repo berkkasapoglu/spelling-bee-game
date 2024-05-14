@@ -4,11 +4,11 @@ import {
 } from '@fortawesome/react-fontawesome';
 import classes from './IconButton.module.scss';
 
-function IconButton(props: FontAwesomeIconProps) {
+function IconButton(props: FontAwesomeIconProps & { onClick: () => void }) {
   return (
-    <a className={classes.button}>
+    <button className={classes.button} onClick={props.onClick}>
       <FontAwesomeIcon {...props} />
-    </a>
+    </button>
   );
 }
 export default IconButton;

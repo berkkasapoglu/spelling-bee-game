@@ -22,7 +22,7 @@ export default function RootLayout({ children, params }: IProps) {
   return (
     <html lang={params.lang}>
       <body className={nunito.className}>
-        <Header />
+        <Header lang={params.lang} />
         <main>{children}</main>
       </body>
     </html>

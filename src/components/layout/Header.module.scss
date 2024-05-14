@@ -7,12 +7,29 @@
   padding-inline: 20px;
   background-color: var(--primary-color);
   height: var(--header-height);
-
   .content {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: var(--max-content-width);
     justify-content: space-between;
+  }
+
+  .rightBox {
+    display: flex;
+    align-items: center;
+
+    .language {
+      width: 30px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid rgb(153, 146, 146);
+      padding-inline: 5px;
+      transition: all 300ms;
+
+      &:hover {
+        background-color: var(--primary-color-dark);
+      }
+    }
   }
 }
