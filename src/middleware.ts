@@ -5,7 +5,9 @@ const defaultLocale = 'en';
 
 // Get the preferred locale, similar to the above or using a library
 function getLocale(request: NextRequest) {
-  return defaultLocale;
+  const localeCookie = request.cookies.get('NEXT_LOCALE')?.value;
+
+  return localeCookie || defaultLocale;
 }
 
 export function middleware(request: NextRequest) {

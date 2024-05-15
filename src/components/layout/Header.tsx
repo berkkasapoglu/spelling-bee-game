@@ -7,9 +7,21 @@ import IconButton from '../ui/icon-button/IconButton';
 import useInfoModalStore from '@/store/useInfoModalStore';
 import { Locales } from '@/lib/dictionaries';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function Header({ lang }: { lang: Locales }) {
   const { openModal } = useInfoModalStore();
+  const router = useRouter();
+
+  const setCookie = (locale: Locales) => {
+    document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
+  };
+
+  const onLanguageSwitch = () => {
+    const locale = lang === 'en' ? 'tr' : 'en';
+    setCookie(locale);
+    router.replace(locale);
+  };
 
   return (
     <nav className={classes.container}>
@@ -18,8 +30,12 @@ function Header({ lang }: { lang: Locales }) {
         <h1>Spelling Bee Game</h1>
         <div className={classes.rightBox}>
           <IconButton icon={faTrophy} onClick={openModal} width={20} />
-          <Link className={classes.language} href={lang === 'en' ? 'tr' : 'en'}>
-            {lang === 'en' ? 'tr' : 'en'}
+          <Link
+            className={classes.language}
+            href={lang === 'en' ? 'tr' : 'en'}
+            onClick={onLanguageSwitch}
+          >
+            {lang === 'en' ? 'en' : 'tr'}
           </Link>
         </div>
       </div>
