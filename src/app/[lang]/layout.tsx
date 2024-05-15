@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
-import { Locales } from '../../lib/dictionaries';
+import { Locales, getDictionary } from '../../lib/dictionaries';
 import Header from '@/components/layout/Header';
+import DictionaryProvider from '@/contexts/DictionaryProvider';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -18,12 +19,16 @@ interface IProps {
   params: { lang: Locales };
 }
 
-export default function RootLayout({ children, params }: IProps) {
+export default async function RootLayout({ children, params }: IProps) {
+  const dictionary = await getDictionary(params.lang);
+
   return (
     <html lang={params.lang}>
       <body className={nunito.className}>
-        <Header lang={params.lang} />
-        <main>{children}</main>
+        <DictionaryProvider dictionary={dictionary}>
+          <Header lang={params.lang} />
+          <main>{children}</main>
+        </DictionaryProvider>
       </body>
     </html>
   );

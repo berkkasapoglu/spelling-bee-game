@@ -1,5 +1,40 @@
 {
-  "products": {
-    "cart": "Sepete Ekle"
+  "title": "Kelime Bulmaca",
+
+  "answerList": {
+    "info": "Bildiğin Kelimeler...",
+    "correctAnswers": "Bildiğiniz kelime sayısı {{count}}"
+  },
+
+  "result": {
+    "infoTitle": "Seviyeler",
+    "infoTitleSingular": "Seviye",
+    "levels": {
+      "beginner": "başlangıç",
+      "novice": "acemi",
+      "okay": "vasat",
+      "good": "iyi",
+      "solid": "yeterli",
+      "nice": "güzel",
+      "great": "harika",
+      "amazing": "inanılmaz",
+      "genius": "dahi"
+    },
+
+    "seconds": "saniye",
+    "score": "Skorun",
+
+    "lastResultTitle": "Seviyen"
+  },
+
+  "actionButtons": {
+    "reset": "Reset",
+    "delete": "Sil",
+    "enter": "Bul"
+  },
+
+  "generic": {
+    "word": "kelime",
+    "words": "kelimeler"
   }
 }

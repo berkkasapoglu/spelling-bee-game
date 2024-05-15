@@ -6,12 +6,14 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { cloneDeep } from 'lodash';
+import { useDictionary } from '@/contexts/DictionaryProvider';
 
 interface IProps {
   list: string[];
 }
 
 function AnswerList({ list }: IProps) {
+  const dict = useDictionary();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -37,13 +39,15 @@ function AnswerList({ list }: IProps) {
   };
 
   const renderDropdownInfo = () => {
-    if (!list.length) return <p>Your Words...</p>;
+    if (!list.length) return <p>{dict.answerList.info}</p>;
 
     if (isOpen)
       return (
         <p>
-          You have found <strong>{list.length}</strong>{' '}
-          {list.length > 1 ? 'words' : 'word'}
+          {dict.answerList.correctAnswers.replace(
+            '{{count}}',
+            list.length.toString()
+          )}
         </p>
       );
 

@@ -2,12 +2,15 @@ import useInfoModalStore from '@/store/useInfoModalStore';
 import { SCORE_PROGRESS_STOPS } from '../spelling-game/SpellingGame.constants';
 import InfoModal from './InfoModal';
 import { useEffect } from 'react';
+import { useDictionary } from '@/contexts/DictionaryProvider';
+import classes from './InfoModal.module.scss';
 
 interface IProps {
   score: number;
 }
 
 function ResultModal({ score }: IProps) {
+  const dict = useDictionary();
   const { resultModalVisible, toggleResultModal } = useInfoModalStore();
 
   useEffect(() => {
@@ -27,14 +30,24 @@ function ResultModal({ score }: IProps) {
     return level;
   };
 
+  const getTitle = () => {
+    const level = getResultLevel()?.label;
+
+    if (!level) return '';
+
+    return `${dict.result.lastResultTitle} ${dict.result.levels[level]}`;
+  };
+
   return (
     <InfoModal
       visible={resultModalVisible}
       onClose={() => toggleResultModal(false)}
-      title={`You are ${getResultLevel()?.label}`}
+      title={getTitle()}
     >
-      <div style={{ marginTop: 20, marginBottom: 10 }}>
-        <h4>Your Score: {score}</h4>
+      <div className={classes.resultBody}>
+        <h4>
+          {dict.result.score}: {score}
+        </h4>
       </div>
     </InfoModal>
   );

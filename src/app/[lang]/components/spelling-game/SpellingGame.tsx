@@ -20,13 +20,14 @@ import Timer from '../timer/Timer';
 import useGame from '@/hooks/useGame';
 import LevelInfoModal from '../info-modal/LevelInfoModal';
 import useInfoModalStore from '@/store/useInfoModalStore';
-import { useRouter } from 'next/navigation';
+import { useDictionary } from '@/contexts/DictionaryProvider';
 
 interface IProps {
   gameData: IGame;
 }
 
 function SpellingGame({ gameData }: IProps) {
+  const dict = useDictionary();
   const [game, setGame] = useState<IGame>();
   const { toggleResultModal } = useInfoModalStore();
   const {
@@ -90,13 +91,16 @@ function SpellingGame({ gameData }: IProps) {
 
           <Timer time={time} />
           <div className={gameClasses.actionButtons}>
-            <Button label="Reset" onClick={() => window.location.reload()} />
-            <Button label="Delete" onClick={onDelete} />
+            <Button
+              label={dict.actionButtons.reset}
+              onClick={() => window.location.reload()}
+            />
+            <Button label={dict.actionButtons.delete} onClick={onDelete} />
             <Button
               label={<FontAwesomeIcon icon={faRotate} />}
               onClick={onShuffle}
             />
-            <Button label="Enter" onClick={onEnter} />
+            <Button label={dict.actionButtons.enter} onClick={onEnter} />
           </div>
         </>
       )}

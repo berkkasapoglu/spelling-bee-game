@@ -2,7 +2,7 @@ import useInfoModalStore from '@/store/useInfoModalStore';
 import { useEffect, useState } from 'react';
 
 function useTimer() {
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(60);
   const { resultModalVisible } = useInfoModalStore();
 
   useEffect(() => {

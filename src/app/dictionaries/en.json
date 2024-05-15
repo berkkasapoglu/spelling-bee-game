@@ -1,5 +1,41 @@
 {
-  "products": {
-    "cart": "Add to Cart"
+  "title": "Spelling Bee Game",
+
+  "answerList": {
+    "info": "Your Words...",
+    "correctAnswers": "You have found {{count}} words"
+  },
+
+  "result": {
+    "infoTitle": "Rankings",
+    "infoTitleSingular": "Rank",
+
+    "levels": {
+      "beginner": "beginner",
+      "novice": "novice",
+      "okay": "okay",
+      "good": "good",
+      "solid": "solid",
+      "nice": "nice",
+      "great": "great",
+      "amazing": "amazing",
+      "genius": "genius"
+    },
+
+    "seconds": "seconds",
+    "score": "Your Score",
+
+    "lastResultTitle": "You are"
+  },
+
+  "actionButtons": {
+    "reset": "Reset",
+    "delete": "Delete",
+    "enter": "Enter"
+  },
+
+  "generic": {
+    "word": "words",
+    "words": "words"
   }
 }

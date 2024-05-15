@@ -2,12 +2,14 @@ import classNames from 'classnames';
 import classes from './ProgressBar.module.scss';
 import { SCORE_PROGRESS_STOPS } from '../spelling-game/SpellingGame.constants';
 import useInfoModalStore from '@/store/useInfoModalStore';
+import { useDictionary } from '@/contexts/DictionaryProvider';
 
 interface IProps {
   score: number;
 }
 
 function ProgressBar({ score }: IProps) {
+  const dict = useDictionary();
   const { toggleLevelInfoModal } = useInfoModalStore();
   const stops = SCORE_PROGRESS_STOPS.map((stop) => stop.value);
 
@@ -37,11 +39,13 @@ function ProgressBar({ score }: IProps) {
       onClick={() => toggleLevelInfoModal(true)}
     >
       <div className={classes.info}>
-        <h5 className={classes.infoStatus}>{currentStop.label}</h5>
+        <h5 className={classes.infoStatus}>
+          {dict.result.levels[currentStop.label]}
+        </h5>
         {nextStop && (
           <p className={classes.nextStep}>
             <strong>{nextStop.value - score} </strong>
-            to {nextStop.label}
+            {'->'} {dict.result.levels[nextStop.label]}
           </p>
         )}
       </div>

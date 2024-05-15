@@ -8,8 +8,10 @@ import useInfoModalStore from '@/store/useInfoModalStore';
 import { Locales } from '@/lib/dictionaries';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useDictionary } from '@/contexts/DictionaryProvider';
 
 function Header({ lang }: { lang: Locales }) {
+  const dict = useDictionary();
   const { toggleLevelInfoModal } = useInfoModalStore();
   const router = useRouter();
 
@@ -27,7 +29,7 @@ function Header({ lang }: { lang: Locales }) {
     <nav className={classes.container}>
       <div className={classes.content}>
         <Image src="/images/bee.png" alt="bee-logo" width={20} height={25} />
-        <h1>Spelling Bee Game</h1>
+        <h1>{dict.title}</h1>
         <div className={classes.rightBox}>
           <IconButton
             icon={faTrophy}

@@ -11,7 +11,18 @@ export const SCORE_MESSAGES = {
   other: 'Great!',
 };
 
-export const SCORE_PROGRESS_STOPS = [
+type Levels =
+  | 'beginner'
+  | 'novice'
+  | 'okay'
+  | 'good'
+  | 'solid'
+  | 'nice'
+  | 'great'
+  | 'amazing'
+  | 'genius';
+
+export const SCORE_PROGRESS_STOPS: { label: Levels; value: number }[] = [
   { label: 'beginner', value: 0 },
   { label: 'novice', value: 5 },
   { label: 'okay', value: 15 },
