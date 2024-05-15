@@ -13,12 +13,14 @@ export const SCORE_MESSAGES = {
 
 export const SCORE_PROGRESS_STOPS = [
   { label: 'beginner', value: 0 },
-  { label: 'novice', value: 10 },
-  { label: 'okay', value: 20 },
-  { label: 'good', value: 30 },
-  { label: 'solid', value: 40 },
-  { label: 'nice', value: 60 },
-  { label: 'great', value: 80 },
-  { label: 'amazing', value: 100 },
-  { label: 'genius', value: 130 },
+  { label: 'novice', value: 5 },
+  { label: 'okay', value: 15 },
+  { label: 'good', value: 25 },
+  { label: 'solid', value: 35 },
+  { label: 'nice', value: 45 },
+  { label: 'great', value: 55 },
+  { label: 'amazing', value: 65 },
+  { label: 'genius', value: 80 },
 ];
+
+export const CORRECT_ANSWER_TIME_GAIN = 15;

@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 function Header({ lang }: { lang: Locales }) {
-  const { openModal } = useInfoModalStore();
+  const { toggleLevelInfoModal } = useInfoModalStore();
   const router = useRouter();
 
   const setCookie = (locale: Locales) => {
@@ -29,7 +29,11 @@ function Header({ lang }: { lang: Locales }) {
         <Image src="/images/bee.png" alt="bee-logo" width={20} height={25} />
         <h1>Spelling Bee Game</h1>
         <div className={classes.rightBox}>
-          <IconButton icon={faTrophy} onClick={openModal} width={20} />
+          <IconButton
+            icon={faTrophy}
+            onClick={() => toggleLevelInfoModal(true)}
+            width={20}
+          />
           <Link
             className={classes.language}
             href={lang === 'en' ? 'tr' : 'en'}

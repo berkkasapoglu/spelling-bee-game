@@ -8,7 +8,7 @@ interface IProps {
 }
 
 function ProgressBar({ score }: IProps) {
-  const { openModal } = useInfoModalStore();
+  const { toggleLevelInfoModal } = useInfoModalStore();
   const stops = SCORE_PROGRESS_STOPS.map((stop) => stop.value);
 
   const checkIsCurrentStop = (stop: number, idx: number) => {
@@ -32,7 +32,10 @@ function ProgressBar({ score }: IProps) {
   const nextStop = SCORE_PROGRESS_STOPS[currentStopIndex + 1];
 
   return (
-    <div className={classes.container} onClick={openModal}>
+    <div
+      className={classes.container}
+      onClick={() => toggleLevelInfoModal(true)}
+    >
       <div className={classes.info}>
         <h5 className={classes.infoStatus}>{currentStop.label}</h5>
         {nextStop && (

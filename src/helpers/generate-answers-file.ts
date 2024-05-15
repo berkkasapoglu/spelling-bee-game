@@ -80,7 +80,6 @@ const generateAnswerFile = (pangrams: string[], validWords: string[]) => {
 
   pangrams.forEach((pangram) => {
     const uniqueLetters = new Set(pangram);
-    console.log('pangram', pangram);
 
     uniqueLetters.forEach((middleLetter) => {
       const answer = getExistingAnswer(file, middleLetter, pangram);

@@ -1,17 +1,20 @@
 import { create } from 'zustand';
 
 interface InfoModalState {
-  visible: boolean;
+  resultModalVisible: boolean;
+  levelInfoModalVisible: boolean;
 
-  openModal: () => void;
-  closeModal: () => void;
+  toggleResultModal: (value: boolean) => void;
+  toggleLevelInfoModal: (value: boolean) => void;
 }
 
 const useInfoModalStore = create<InfoModalState>((set) => ({
-  visible: false,
+  resultModalVisible: false,
+  levelInfoModalVisible: false,
 
-  openModal: () => set({ visible: true }),
-  closeModal: () => set({ visible: false }),
+  toggleResultModal: (value: boolean) => set({ resultModalVisible: value }),
+  toggleLevelInfoModal: (value: boolean) =>
+    set({ levelInfoModalVisible: value }),
 }));
 
 export default useInfoModalStore;
