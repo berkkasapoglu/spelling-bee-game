@@ -33,8 +33,13 @@
     "enter": "Bul"
   },
 
-  "generic": {
-    "word": "kelime",
-    "words": "kelimeler"
+  "warning": {
+    "tooShort": "Çok Kısa",
+    "alreadyFound": "Zaten Bulundu",
+    "invalidWord": "Hatalı Kelime",
+    "success": {
+      "default": "Harika!!",
+      "pangram": "Pangram!!"
+    }
   }
 }

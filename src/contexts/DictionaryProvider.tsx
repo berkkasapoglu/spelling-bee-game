@@ -3,7 +3,7 @@
 import { getDictionary } from '@/lib/dictionaries';
 import { createContext, useContext } from 'react';
 
-type Dictionary = Awaited<ReturnType<typeof getDictionary>>;
+export type Dictionary = Awaited<ReturnType<typeof getDictionary>>;
 
 const DictionaryContext = createContext<Dictionary | null>(null);
 

@@ -34,8 +34,13 @@
     "enter": "Enter"
   },
 
-  "generic": {
-    "word": "words",
-    "words": "words"
+  "warning": {
+    "tooShort": "Too Short",
+    "alreadyFound": "Already Found",
+    "invalidWord": "Invalid Word",
+    "success": {
+      "default": "Great!!",
+      "pangram": "Pangram!!"
+    }
   }
 }

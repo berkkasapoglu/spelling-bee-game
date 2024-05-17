@@ -21,6 +21,7 @@ import useGame from '@/hooks/useGame';
 import LevelInfoModal from '../info-modal/LevelInfoModal';
 import useInfoModalStore from '@/store/useInfoModalStore';
 import { useDictionary } from '@/contexts/DictionaryProvider';
+import InfoMessage from '@/components/ui/info-message/InfoMessage';
 
 interface IProps {
   gameData: IGame;
@@ -40,6 +41,8 @@ function SpellingGame({ gameData }: IProps) {
     onShuffle,
     userInput,
     correctAnswers,
+    info,
+    setInfo,
   } = useGame({ game, setGame });
 
   useEffect(() => {
@@ -74,6 +77,12 @@ function SpellingGame({ gameData }: IProps) {
         <>
           <ProgressBar score={score} />
           <AnswerList list={correctAnswers} />
+
+          <InfoMessage
+            text={info?.message}
+            onClose={() => setInfo(null)}
+            variant={info?.success ? 'success' : 'info'}
+          />
           <UserAnswerInput
             value={userInput}
             onChange={onChangeUserInput}

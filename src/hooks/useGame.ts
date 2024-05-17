@@ -8,6 +8,8 @@ import shuffleGame from '@/app/[lang]/helpers/shuffle-game';
 import { Dispatch, SetStateAction, useState } from 'react';
 import useTimer from './useTimer';
 import { IGame } from '@/app/[lang]/components/spelling-game/SpellingGame.types';
+import validateInput, { IWarningMessage } from '@/helpers/validate-input';
+import { useDictionary } from '@/contexts/DictionaryProvider';
 
 interface IParams {
   game?: IGame;
@@ -15,9 +17,11 @@ interface IParams {
 }
 
 function useGame({ game, setGame }: IParams) {
+  const dict = useDictionary();
   const [score, setScore] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [userInput, setUserInput] = useState('');
+  const [info, setInfo] = useState<IWarningMessage | null>(null);
   const { time, changeTime } = useTimer();
 
   const onEnter = () => {
@@ -25,14 +29,19 @@ function useGame({ game, setGame }: IParams) {
 
     setUserInput('');
 
-    if (correctAnswers.includes(userInput)) return;
+    const validationResult = validateInput(
+      { userInput, correctAnswers, game },
+      dict
+    );
 
-    if (!game.pangrams.includes(userInput) && !game.answers.includes(userInput))
-      return;
+    setInfo(validationResult);
+
+    if (!validationResult.success) return;
 
     setCorrectAnswers([...correctAnswers, userInput]);
 
     const gainedScore = calculateScore(game, userInput);
+
     changeTime((prev) => prev + CORRECT_ANSWER_TIME_GAIN);
     setScore(score + gainedScore);
   };
@@ -78,6 +87,8 @@ function useGame({ game, setGame }: IParams) {
     onEnter,
     userInput,
     correctAnswers,
+    info,
+    setInfo,
   };
 }
 export default useGame;

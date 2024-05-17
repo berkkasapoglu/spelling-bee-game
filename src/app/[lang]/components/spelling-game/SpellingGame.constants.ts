@@ -11,6 +11,8 @@ export const SCORE_MESSAGES = {
   other: 'Great!',
 };
 
+export const MIN_WORD_LENGTH = 4;
+
 type Levels =
   | 'beginner'
   | 'novice'

@@ -1,0 +1,22 @@
+.container {
+  --success-color: #5bc330;
+  --info-color: #000;
+
+  height: 26px;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: #fff;
+
+  &.hidden {
+    visibility: hidden;
+  }
+
+  &.success {
+    background-color: var(--success-color);
+  }
+
+  &.info {
+    background-color: var(--info-color);
+  }
+}
