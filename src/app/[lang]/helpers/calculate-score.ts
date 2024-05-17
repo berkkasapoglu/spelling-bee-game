@@ -9,4 +9,12 @@ const calculateScore = (game: IGame, letter: string) => {
   return letter.length;
 };
 
+export const calculateMaxScore = (game: IGame) => {
+  let maxScore = 0;
+
+  game.answers.forEach((answer) => (maxScore += calculateScore(game, answer)));
+
+  return maxScore;
+};
+
 export default calculateScore;

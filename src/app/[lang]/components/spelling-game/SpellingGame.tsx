@@ -13,6 +13,7 @@ import useInfoModalStore from '@/store/useInfoModalStore';
 import InfoMessage from '@/components/ui/info-message/InfoMessage';
 import ActionButtons from '../action-buttons/ActionButtons';
 import Hive from '../hive/Hive';
+import { calculateMaxScore } from '../../helpers/calculate-score';
 
 interface IProps {
   gameData: IGame;
@@ -50,7 +51,7 @@ function SpellingGame({ gameData }: IProps) {
   return (
     <>
       <LevelInfoModal />
-      <ResultModal score={score} />
+      <ResultModal score={score} maxScore={calculateMaxScore(game)} />
 
       <ProgressBar score={score} />
       <AnswerList list={correctAnswers} />

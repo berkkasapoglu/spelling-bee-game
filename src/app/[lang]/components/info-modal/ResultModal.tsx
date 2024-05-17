@@ -7,17 +7,16 @@ import classes from './InfoModal.module.scss';
 
 interface IProps {
   score: number;
+  maxScore: number;
 }
 
-function ResultModal({ score }: IProps) {
+function ResultModal({ score, maxScore }: IProps) {
   const dict = useDictionary();
   const { resultModalVisible, toggleResultModal } = useInfoModalStore();
 
   useEffect(() => {
-    const lastLevelScore = SCORE_PROGRESS_STOPS.at(-1)?.value;
-
-    if (lastLevelScore && score >= lastLevelScore) toggleResultModal(true);
-  }, [score, toggleResultModal]);
+    if (maxScore && score >= maxScore) toggleResultModal(true);
+  }, [score, toggleResultModal, maxScore]);
 
   const getResultLevel = () => {
     const level = SCORE_PROGRESS_STOPS.find((stop, idx) => {

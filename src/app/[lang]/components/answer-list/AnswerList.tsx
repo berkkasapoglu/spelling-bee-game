@@ -3,7 +3,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from './AnswerList.module.scss';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import classNames from 'classnames';
 import { cloneDeep } from 'lodash';
 import { useDictionary } from '@/contexts/DictionaryProvider';
@@ -51,7 +51,11 @@ function AnswerList({ list }: IProps) {
         </p>
       );
 
-    return <div className={classes.highlight}>{list.join(', ')}</div>;
+    const listCopy = [...list];
+
+    return (
+      <div className={classes.highlight}>{listCopy.reverse().join(', ')}</div>
+    );
   };
 
   return (
@@ -70,4 +74,4 @@ function AnswerList({ list }: IProps) {
     </div>
   );
 }
-export default AnswerList;
+export default memo(AnswerList);

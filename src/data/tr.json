@@ -11,11 +11,10 @@
       "yarım",
       "kalkmak",
       "rakam",
-      "akıllı",
-      "ayrılmak",
       "kararlık",
       "akıllı",
-      "yayılma"
+      "yayılma",
+      "ayrım"
     ],
     "middleLetter": "a",
     "validLetters": ["k", "l", "r", "ı", "m", "a", "y"]
@@ -80,8 +79,6 @@
       "nedir",
       "neden",
       "renk",
-      "renkli",
-      "derinlik",
       "ekinlik",
       "renkli",
       "derinlik",
@@ -103,11 +100,11 @@
       "lider",
       "nedir",
       "renkli",
-      "derinlik",
       "ekinlik",
       "renkli",
       "derinlik",
-      "liderlik"
+      "liderlik",
+      "derin"
     ],
     "middleLetter": "i",
     "validLetters": ["l", "d", "k", "i", "n", "e", "r"]
@@ -118,10 +115,8 @@
       "akıl",
       "alış",
       "alkış",
-      "arkadaş",
       "dışarı",
       "karar",
-      "karışık",
       "karşı",
       "şarkı",
       "akıllık",
@@ -182,7 +177,6 @@
     "answers": [
       "ekmek",
       "inek",
-      "izlemek",
       "keklik",
       "melek",
       "eklemek",
@@ -190,7 +184,6 @@
       "kelime",
       "ekinlik",
       "izlenmek",
-      "elemek",
       "elemek",
       "ellemek",
       "ezilmek",
@@ -204,7 +197,6 @@
     "answers": [
       "ekmek",
       "inek",
-      "izlemek",
       "keklik",
       "melek",
       "eklemek",
@@ -212,7 +204,6 @@
       "kelime",
       "ekinlik",
       "izlenmek",
-      "elemek",
       "elemek",
       "ellemek",
       "ezilmek",
