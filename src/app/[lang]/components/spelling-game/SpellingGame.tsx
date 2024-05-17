@@ -68,6 +68,7 @@ function SpellingGame({ gameData }: IProps) {
       />
 
       <Hive validLetters={game.validLetters} onCellClick={onCellClick} />
+
       <Timer time={time} />
       <ActionButtons
         onDelete={onDelete}
