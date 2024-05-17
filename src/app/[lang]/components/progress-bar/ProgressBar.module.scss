@@ -9,6 +9,12 @@
   padding-block: 10px;
   cursor: pointer;
 
+  @media (max-width: $mobile) {
+    margin-bottom: 5px;
+    gap: 10px;
+    flex-direction: column;
+  }
+
   .info {
     .nextStep {
       font-size: 12px;
