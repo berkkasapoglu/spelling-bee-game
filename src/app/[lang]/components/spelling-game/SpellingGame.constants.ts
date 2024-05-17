@@ -1,14 +1,8 @@
 export const MIDDLE_LETTER_INDEX = 3;
 
 export const SCORES = {
-  pangram: 15,
+  pangram: 18,
   min: 1,
-};
-
-export const SCORE_MESSAGES = {
-  pangram: 'Pangram!!',
-  min: 'Good!',
-  other: 'Great!',
 };
 
 export const MIN_WORD_LENGTH = 4;

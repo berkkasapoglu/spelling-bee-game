@@ -8,8 +8,12 @@ import shuffleGame from '@/app/[lang]/helpers/shuffle-game';
 import { Dispatch, SetStateAction, useState } from 'react';
 import useTimer from './useTimer';
 import { IGame } from '@/app/[lang]/components/spelling-game/SpellingGame.types';
-import validateInput, { IWarningMessage } from '@/helpers/validate-input';
 import { useDictionary } from '@/contexts/DictionaryProvider';
+import validateInput, {
+  IWarningMessage,
+} from '@/app/[lang]/helpers/validate-input';
+
+type TKeyboardActions = { [key: string]: () => void };
 
 interface IParams {
   game?: IGame;
@@ -44,6 +48,11 @@ function useGame({ game, setGame }: IParams) {
 
     changeTime((prev) => prev + CORRECT_ANSWER_TIME_GAIN);
     setScore(score + gainedScore);
+
+    setInfo({
+      ...validationResult,
+      message: `${validationResult.message} +${gainedScore}`,
+    });
   };
 
   const onDelete = () => {
@@ -59,8 +68,12 @@ function useGame({ game, setGame }: IParams) {
   };
 
   const onChangeUserInput = (key: string) => {
-    if (key === 'Backspace') return onDelete();
-    if (key === 'Enter') return onEnter();
+    const keyActions: TKeyboardActions = {
+      Backspace: onDelete,
+      Enter: onEnter,
+    };
+
+    keyActions[key]?.();
 
     const regex = new RegExp(VALIDATION_REGEX);
     if (!regex.test(key)) return;

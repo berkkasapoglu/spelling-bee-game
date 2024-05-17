@@ -39,8 +39,8 @@
     "alreadyFound": "Already Found",
     "invalidWord": "Invalid Word",
     "success": {
-      "default": "Great!!",
-      "pangram": "Pangram!!"
+      "default": "Great !!",
+      "pangram": "Pangram !!"
     }
   }
 }

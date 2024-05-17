@@ -122,7 +122,7 @@ export const writeAnswersFile = async (lang: Locales) => {
     const words = data
       .toString()
       .split('\n')
-      .map((line) => line.toLowerCase());
+      .map((line) => line.toLowerCase().replace(/(\r\n|\n|\r)/gm, ''));
 
     const validWords = getValidWords(words);
 
